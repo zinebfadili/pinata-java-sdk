@@ -6,7 +6,7 @@
 
     <groupId>io.github.zinebfadili</groupId>
     <artifactId>pinata-java-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 
     <name>pinata-java-sdk</name>
     <description>Pinata Java SDK to interact with the Pinata API</description>

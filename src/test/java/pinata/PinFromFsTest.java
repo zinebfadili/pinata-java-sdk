@@ -22,11 +22,13 @@ public class PinFromFsTest {
     URL resource = getClass().getClassLoader().getResource(fileName);
     assertNotNull(resource);
     try (MockedStatic<RequestSender> utilities = Mockito.mockStatic(RequestSender.class)) {
+      PinataResponse expectedResponse = new PinataResponse();
+      expectedResponse.setStatus(200);
       utilities.when(() -> RequestSender.postOrPutRequest(any(),any(), any(), any(), any()))
-          .thenReturn(new JSONObject("{ status: 200 }"));
-      JSONObject response = pinata
+          .thenReturn(expectedResponse);
+      PinataResponse response = pinata
           .pinFromFs("test", "test", resource.getPath(), null);
-      assertEquals(200, response.getInt("status"));
+      assertEquals(200, response.getStatus());
     } catch (Exception e) {
       fail();
     }

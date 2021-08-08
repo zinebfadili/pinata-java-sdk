@@ -28,11 +28,13 @@ public class UnpinTest {
   public void validHashToUnpin() {
     Pinata pinata = new Pinata();
     try (MockedStatic<RequestSender> utilities = Mockito.mockStatic(RequestSender.class)) {
+      PinataResponse expectedResponse = new PinataResponse();
+      expectedResponse.setStatus(200);
       utilities.when(() -> RequestSender.postOrPutRequest(any(),any(), any(), any(), any()))
-          .thenReturn(new JSONObject("{ status: 200 }"));
-      JSONObject response = pinata.unpin("test", "test",
+          .thenReturn(expectedResponse);
+      PinataResponse response = pinata.unpin("test", "test",
           "QmVkauiTpFLVCGXKnZkBB7byohrGwsfFUYBsfsiZb9iBqy");
-      assertEquals(200, response.getInt("status"));
+      assertEquals(200, response.getStatus());
     } catch (Exception e) {
       e.printStackTrace();
       fail();

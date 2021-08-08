@@ -38,16 +38,16 @@ public class Pinata {
   public Pinata() {
   }
 
-  public JSONObject pinByHash(String hashToPin) throws PinataException, IOException {
+  public PinataResponse pinByHash(String hashToPin) throws PinataException, IOException {
     return pinByHash(pinataApiKey, pinataSecretApiKey, hashToPin, null);
   }
 
-  public JSONObject pinByHash(String pinataApiKey, String pinataSecretApiKey, String hashToPin)
+  public PinataResponse pinByHash(String pinataApiKey, String pinataSecretApiKey, String hashToPin)
       throws PinataException, IOException {
     return pinByHash(pinataApiKey, pinataSecretApiKey, hashToPin, null);
   }
 
-  public JSONObject pinByHash(String hashToPin, JSONObject options)
+  public PinataResponse pinByHash(String hashToPin, JSONObject options)
       throws PinataException, IOException {
     return pinByHash(pinataApiKey, pinataSecretApiKey, hashToPin, options);
   }
@@ -63,7 +63,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or hash provided
    * @throws IOException when failure to send request
    */
-  public JSONObject pinByHash(String pinataApiKey, String pinataSecretApiKey, String hashToPin,
+  public PinataResponse pinByHash(String pinataApiKey, String pinataSecretApiKey, String hashToPin,
       JSONObject options) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -96,7 +96,7 @@ public class Pinata {
     return postOrPutRequest("POST", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject hashMetaData(String ipfsPinHash, JSONObject metadata)
+  public PinataResponse hashMetaData(String ipfsPinHash, JSONObject metadata)
       throws PinataException, IOException {
     return hashMetaData(pinataApiKey, pinataSecretApiKey, ipfsPinHash, metadata);
   }
@@ -112,7 +112,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or hash provided
    * @throws IOException when failure to send request
    */
-  public JSONObject hashMetaData(String pinataApiKey, String pinataSecretApiKey, String ipfsPinHash,
+  public PinataResponse hashMetaData(String pinataApiKey, String pinataSecretApiKey, String ipfsPinHash,
       JSONObject metadata) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -150,7 +150,7 @@ public class Pinata {
 
   }
 
-  public JSONObject hashPinPolicy(String ipfsPinHash, JSONObject newPinPolicy)
+  public PinataResponse hashPinPolicy(String ipfsPinHash, JSONObject newPinPolicy)
       throws PinataException, IOException {
     return hashPinPolicy(pinataApiKey, pinataSecretApiKey, ipfsPinHash, newPinPolicy);
   }
@@ -166,7 +166,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or hash or metadata provided
    * @throws IOException when failure to send request
    */
-  public JSONObject hashPinPolicy(String pinataApiKey, String pinataSecretApiKey,
+  public PinataResponse hashPinPolicy(String pinataApiKey, String pinataSecretApiKey,
       String ipfsPinHash, JSONObject newPinPolicy) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
     Validator.validatePinPolicyStructure(newPinPolicy);
@@ -196,16 +196,16 @@ public class Pinata {
     return postOrPutRequest("PUT", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject pinFileToIpfs(File file, JSONObject options) throws
+  public PinataResponse pinFileToIpfs(File file, JSONObject options) throws
       PinataException, IOException {
     return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, file, options);
   }
 
-  public JSONObject pinFileToIpfs(File file) throws PinataException, IOException {
+  public PinataResponse pinFileToIpfs(File file) throws PinataException, IOException {
     return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, file, null);
   }
 
-  public JSONObject pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, File file)
+  public PinataResponse pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, File file)
       throws PinataException, IOException {
     return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, file, null);
   }
@@ -221,7 +221,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or file
    * @throws IOException when failure to send request
    */
-  public JSONObject pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, File file,
+  public PinataResponse pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, File file,
       JSONObject options) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -244,16 +244,16 @@ public class Pinata {
   }
 
 
-  public JSONObject pinJsonToIpfs(JSONObject pinataBody) throws PinataException, IOException {
+  public PinataResponse pinJsonToIpfs(JSONObject pinataBody) throws PinataException, IOException {
     return pinJsonToIpfs(pinataApiKey, pinataSecretApiKey, pinataBody, null);
   }
 
-  public JSONObject pinJsonToIpfs(JSONObject pinataBody, JSONObject options)
+  public PinataResponse pinJsonToIpfs(JSONObject pinataBody, JSONObject options)
       throws PinataException, IOException {
     return pinJsonToIpfs(pinataApiKey, pinataSecretApiKey, pinataBody, options);
   }
 
-  public JSONObject pinJsonToIpfs(String pinataApiKey, String pinataSecretApiKey,
+  public PinataResponse pinJsonToIpfs(String pinataApiKey, String pinataSecretApiKey,
       JSONObject pinataBody) throws PinataException, IOException {
     return pinJsonToIpfs(pinataApiKey, pinataSecretApiKey, pinataBody, null);
   }
@@ -269,7 +269,7 @@ public class Pinata {
    * @throws PinataException when invalid keys
    * @throws IOException when failure to send request
    */
-  public JSONObject pinJsonToIpfs(String pinataApiKey, String pinataSecretApiKey,
+  public PinataResponse pinJsonToIpfs(String pinataApiKey, String pinataSecretApiKey,
       JSONObject pinataBody, JSONObject options) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -296,7 +296,7 @@ public class Pinata {
     return postOrPutRequest("POST", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject unpin(String hashToUnpin) throws PinataException, IOException {
+  public PinataResponse unpin(String hashToUnpin) throws PinataException, IOException {
     return unpin(pinataApiKey, pinataSecretApiKey, hashToUnpin);
   }
 
@@ -310,7 +310,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or content hash
    * @throws IOException when failure to send request
    */
-  public JSONObject unpin(String pinataApiKey, String pinataSecretApiKey, String hashToUnpin)
+  public PinataResponse unpin(String pinataApiKey, String pinataSecretApiKey, String hashToUnpin)
       throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -329,7 +329,7 @@ public class Pinata {
     return postOrPutRequest("POST", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject userPinPolicy(JSONObject newPinPolicy) throws PinataException, IOException {
+  public PinataResponse userPinPolicy(JSONObject newPinPolicy) throws PinataException, IOException {
     return userPinPolicy(pinataApiKey, pinataSecretApiKey, newPinPolicy);
   }
 
@@ -343,7 +343,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or pin policy
    * @throws IOException when failure to send request
    */
-  public JSONObject userPinPolicy(String pinataApiKey, String pinataSecretApiKey,
+  public PinataResponse userPinPolicy(String pinataApiKey, String pinataSecretApiKey,
       JSONObject newPinPolicy) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
     Validator.validatePinPolicyStructure(newPinPolicy);
@@ -359,16 +359,16 @@ public class Pinata {
     return postOrPutRequest("PUT", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject pinFromFs(String sourcePath) throws PinataException, IOException {
+  public PinataResponse pinFromFs(String sourcePath) throws PinataException, IOException {
     return pinFromFs(pinataApiKey, pinataSecretApiKey, sourcePath, null);
   }
 
-  public JSONObject pinFromFs(String pinataApiKey, String pinataSecretApiKey, String sourcePath)
+  public PinataResponse pinFromFs(String pinataApiKey, String pinataSecretApiKey, String sourcePath)
       throws PinataException, IOException {
     return pinFromFs(pinataApiKey, pinataSecretApiKey, sourcePath, null);
   }
 
-  public JSONObject pinFromFs(String sourcePath, JSONObject options)
+  public PinataResponse pinFromFs(String sourcePath, JSONObject options)
       throws PinataException, IOException {
     return pinFromFs(pinataApiKey, pinataSecretApiKey, sourcePath, options);
   }
@@ -384,7 +384,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or path
    * @throws IOException when failure to send request
    */
-  public JSONObject pinFromFs(String pinataApiKey, String pinataSecretApiKey, String sourcePath,
+  public PinataResponse pinFromFs(String pinataApiKey, String pinataSecretApiKey, String sourcePath,
       JSONObject options) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -424,7 +424,7 @@ public class Pinata {
     return postOrPutRequest("POST", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject testAuthentication() throws PinataException, IOException {
+  public PinataResponse testAuthentication() throws PinataException, IOException {
     return testAuthentication(pinataApiKey, pinataSecretApiKey);
   }
 
@@ -437,7 +437,7 @@ public class Pinata {
    * @throws PinataException when invalid keys
    * @throws IOException when failure to send request
    */
-  public JSONObject testAuthentication(String pinataApiKey, String pinataSecretApiKey)
+  public PinataResponse testAuthentication(String pinataApiKey, String pinataSecretApiKey)
       throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -446,7 +446,7 @@ public class Pinata {
     return getRequest(endpoint, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject userPinnedDataTotal() throws PinataException, IOException {
+  public PinataResponse userPinnedDataTotal() throws PinataException, IOException {
     return userPinnedDataTotal(pinataApiKey, pinataSecretApiKey);
   }
 
@@ -459,7 +459,7 @@ public class Pinata {
    * @throws PinataException when invalid keys
    * @throws IOException when failure to send request
    */
-  public JSONObject userPinnedDataTotal(String pinataApiKey, String pinataSecretApiKey)
+  public PinataResponse userPinnedDataTotal(String pinataApiKey, String pinataSecretApiKey)
       throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -468,7 +468,7 @@ public class Pinata {
     return getRequest(endpoint, pinataApiKey, pinataSecretApiKey);
   }
 
-  public JSONObject pinList(JSONObject filters) throws PinataException, IOException {
+  public PinataResponse pinList(JSONObject filters) throws PinataException, IOException {
     return pinList(pinataApiKey, pinataSecretApiKey, filters);
   }
 
@@ -482,7 +482,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or failure to build url
    * @throws IOException when failure to send request
    */
-  public JSONObject pinList(String pinataApiKey, String pinataSecretApiKey, JSONObject filters)
+  public PinataResponse pinList(String pinataApiKey, String pinataSecretApiKey, JSONObject filters)
       throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
@@ -494,7 +494,7 @@ public class Pinata {
 
   }
 
-  public JSONObject pinJobs(JSONObject filters) throws PinataException, IOException {
+  public PinataResponse pinJobs(JSONObject filters) throws PinataException, IOException {
     return pinJobs(pinataApiKey, pinataSecretApiKey, filters);
   }
 
@@ -508,7 +508,7 @@ public class Pinata {
    * @throws PinataException when invalid keys or failure to build url
    * @throws IOException when failure to send request
    */
-  public JSONObject pinJobs(String pinataApiKey, String pinataSecretApiKey, JSONObject filters)
+  public PinataResponse pinJobs(String pinataApiKey, String pinataSecretApiKey, JSONObject filters)
       throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 

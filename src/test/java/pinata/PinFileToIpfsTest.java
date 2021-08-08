@@ -25,10 +25,12 @@ public class PinFileToIpfsTest {
     assertNotNull(resource);
     File file = new File(resource.toURI());
     try (MockedStatic<RequestSender> utilities = Mockito.mockStatic(RequestSender.class)) {
+      PinataResponse expectedResponse = new PinataResponse();
+      expectedResponse.setStatus(200);
       utilities.when(() -> RequestSender.postOrPutRequest(any(),any(), any(), any(), any()))
-          .thenReturn(new JSONObject("{ status: 200 }"));
-      JSONObject response = pinata.pinFileToIpfs("test", "test", file);
-      assertEquals(200, response.getInt("status"));
+          .thenReturn(expectedResponse);
+      PinataResponse response = pinata.pinFileToIpfs("test", "test", file);
+      assertEquals(200, response.getStatus());
     } catch (Exception e) {
       e.printStackTrace();
       fail();

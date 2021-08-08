@@ -36,8 +36,8 @@ Test that you can connect to the API with:
 ```Java
   // If you created a Pinata instance with keys
   try {
-    JSONObject authResponse = pinata.testAuthentication();
-    // If a PinataException hasn't been been thrown, it means that the status is 200  
+    PinataResponse authResponse = pinata.testAuthentication();
+    // If a PinataException hasn't been been thrown, it means that the status igs 200  
     System.out.println(authResponse.getInt("status")); // 200
   } catch (PinataException e) {
     // The status returned is not 200
@@ -47,7 +47,7 @@ Test that you can connect to the API with:
   
   // If you created a Pinata instance without keys
   try {
-    JSONObject authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
+    PinataResponse authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(authResponse.getInt("status")); // 200
   } catch (PinataException e) {
@@ -66,7 +66,7 @@ As an example, here is a call to pin by hash:
 ```Java
   // If you created a Pinata instance with keys
   try {
-    JSONObject pinResponse = pinata.pinByHash('yourHash');
+    PinataResponse pinResponse = pinata.pinByHash('yourHash');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(pinResponse.getInt("status")); // 200
   } catch (PinataException e) {
@@ -77,7 +77,7 @@ As an example, here is a call to pin by hash:
   
   // If you created a Pinata instance without keys
   try {
-    JSONObject pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
+    PinataResponse pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(pinResponse.getInt("status")); // 200
   } catch (PinataException e) {
@@ -87,7 +87,7 @@ As an example, here is a call to pin by hash:
   }
 ```
 
-The return value is always a JSON object with two keys:
+The return value contains two attributes:
  * `status` : an Integer containing the response status
  * `body` : a String containing the response body
 
