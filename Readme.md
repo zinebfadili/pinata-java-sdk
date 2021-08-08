@@ -40,8 +40,8 @@ Test that you can connect to the API with:
   // If you created a Pinata instance without keys
   JSONObject authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
   
-  // Make sure that the result status is 200
-  System.out.println(authResponse.getInt("status"));
+  // If a PinataException hasn't been been thrown, this means that the status is 200
+  System.out.println(authResponse.getInt("status")); // 200
 ```
 ## Usage
 
@@ -56,9 +56,9 @@ As an example, here is a call to pin by hash:
   
   // If you created a Pinata instance without keys
   JSONObject pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
-  
-  // Make sure that the result status is 200
-  System.out.println(pinResponse.getInt("status"));
+
+  // If a PinataException hasn't been been thrown, this means that the status is 200  
+  System.out.println(pinResponse.getInt("status")); // 200
 ```
 
 ## Remarks
