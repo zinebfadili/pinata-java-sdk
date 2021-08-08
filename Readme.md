@@ -1,6 +1,6 @@
 # Pinata SDK
 
-Unofficial Java SDK for [Pinata](https://pinata.cloud)
+Unofficial Java SDK for [Pinata](https://pinata.cloud).
 
 ## Overview
 
@@ -41,12 +41,11 @@ Test that you can connect to the API with:
   JSONObject authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
   
   // Make sure that the result status is 200
-    System.out.println(authResponse.getInt("status"));
+  System.out.println(authResponse.getInt("status"));
 ```
 ## Usage
 
-Please refer to the full list of available methods and their usage in the [Pinata JS SDK docs](https://github.com/PinataCloud/Pinata-SDK/blob/master/README.md)
-The method names are the same in camel case.
+Please refer to the full list of available methods and their usage in the [Pinata-SDK documentation](https://github.com/PinataCloud/Pinata-SDK/blob/master/README.md). The method names are the same in camel case.
 
 If you have created a Pinata instance using your keys, you don't need to specify them again when calling the methods.
 
@@ -60,12 +59,12 @@ As an example, here is a call to pin by hash:
   JSONObject pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
   
   // Make sure that the result status is 200
-    System.out.println(pinResponse.getInt("status"));
+  System.out.println(pinResponse.getInt("status"));
 ```
 
 ## Remarks
 
-Please note that this version only supports IPFS peer addresses protocols that are handled in the [multiformats Protocol java implementation](https://github.com/multiformats/java-multiaddr).
+Please note that this version only supports IPFS peer addresses protocols that are handled in the [multiformats Protocol Java Implementation](https://github.com/multiformats/java-multiaddr).
 This means, for example, that addresses containing *p2p-webrtc-start* or in *Base1* are not supported.
 
 ## License
