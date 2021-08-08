@@ -35,13 +35,26 @@ Or, with Pinata API keys:
 Test that you can connect to the API with:
 ```Java
   // If you created a Pinata instance with keys
-  JSONObject authResponse = pinata.testAuthentication();
+  try {
+    JSONObject authResponse = pinata.testAuthentication();
+    // If a PinataException hasn't been been thrown, it means that the status is 200  
+    System.out.println(authResponse.getInt("status")); // 200
+  } catch (PinataException e) {
+    // The status returned is not 200
+  } catch (IOException e) {
+    // Unable to send request
+  }
   
   // If you created a Pinata instance without keys
-  JSONObject authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
-  
-  // If a PinataException hasn't been been thrown, it means that the status is 200
-  System.out.println(authResponse.getInt("status")); // 200
+  try {
+    JSONObject authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
+    // If a PinataException hasn't been been thrown, it means that the status is 200  
+    System.out.println(authResponse.getInt("status")); // 200
+  } catch (PinataException e) {
+    // The status returned is not 200
+  } catch (IOException e) {
+    // Unable to send request
+  }
 ```
 ## Usage
 
@@ -52,13 +65,26 @@ If you have created a Pinata instance using your keys, you don't need to specify
 As an example, here is a call to pin by hash:
 ```Java
   // If you created a Pinata instance with keys
-  JSONObject pinResponse = pinata.pinByHash('yourHash');
+  try {
+    JSONObject pinResponse = pinata.pinByHash('yourHash');
+    // If a PinataException hasn't been been thrown, it means that the status is 200  
+    System.out.println(pinResponse.getInt("status")); // 200
+  } catch (PinataException e) {
+    // The status returned is not 200
+  } catch (IOException e) {
+    // Unable to send request
+  }
   
   // If you created a Pinata instance without keys
-  JSONObject pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
-
-  // If a PinataException hasn't been been thrown, it means that the status is 200  
-  System.out.println(pinResponse.getInt("status")); // 200
+  try {
+    JSONObject pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
+    // If a PinataException hasn't been been thrown, it means that the status is 200  
+    System.out.println(pinResponse.getInt("status")); // 200
+  } catch (PinataException e) {
+    // The status returned is not 200
+  } catch (IOException e) {
+    // Unable to send request
+  }
 ```
 
 ## Remarks
