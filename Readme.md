@@ -25,15 +25,15 @@ For Maven, add the following sections to your pom.xml (replacing $LATEST_VERSION
 ## Setup
 
 Create a Pinata instance without API keys:
-```
+```Java
   Pinata pinata = new Pinata();
 ```
 Or, with Pinata API keys:
-```
+```Java
   Pinata pinata = new Pinata('yourPinataApiKey', 'yourPinataSecretApiKey');
 ```
 Test that you can connect to the API with:
-```
+```Java
   // If you created a Pinata instance with keys
   JSONObject authResponse = pinata.testAuthentication();
   
@@ -50,8 +50,7 @@ Please refer to the full list of available methods and their usage in the [Pinat
 If you have created a Pinata instance using your keys, you don't need to specify them again when calling the methods.
 
 As an example, here is a call to pin by hash:
-
-```
+```Java
   // If you created a Pinata instance with keys
   JSONObject pinResponse = pinata.pinByHash('yourHash');
   
