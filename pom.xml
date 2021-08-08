@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.pinata</groupId>
+    <groupId>io.github.zinebfadili</groupId>
     <artifactId>pinata-java-sdk</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>pinata-java-sdk</name>
+    <description>Pinata Java SDK to interact with the Pinata API</description>
+    <url>https://github.com/zinebfadili/pinata-java-sdk</url>
 
     <licenses>
         <license>
@@ -15,6 +19,21 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/zinebfadili/pinata-java-sdk.git</connection>
+        <developerConnection>scm:git:ssh://github.com:zinebfadili/pinata-java-sdk.git</developerConnection>
+        <url>https://github.com/zinebfadili/pinata-java-sdk</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Zineb Fadili</name>
+            <email>zineb.fadili@insa-lyon.fr</email>
+            <organization>com.github.zinebfadili</organization>
+            <organizationUrl>https://github.com/zinebfadili</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
