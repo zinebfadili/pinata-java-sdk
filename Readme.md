@@ -38,7 +38,7 @@ Test that you can connect to the API with:
   try {
     PinataResponse authResponse = pinata.testAuthentication();
     // If a PinataException hasn't been been thrown, it means that the status igs 200  
-    System.out.println(authResponse.getInt("status")); // 200
+    System.out.println(authResponse.getStatus()); // 200
   } catch (PinataException e) {
     // The status returned is not 200
   } catch (IOException e) {
@@ -49,7 +49,7 @@ Test that you can connect to the API with:
   try {
     PinataResponse authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
-    System.out.println(authResponse.getInt("status")); // 200
+    System.out.println(authResponse.getStatus()); // 200
   } catch (PinataException e) {
     // The status returned is not 200
   } catch (IOException e) {
@@ -68,7 +68,7 @@ As an example, here is a call to pin by hash:
   try {
     PinataResponse pinResponse = pinata.pinByHash('yourHash');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
-    System.out.println(pinResponse.getInt("status")); // 200
+    System.out.println(pinResponse.getStatus()); // 200
   } catch (PinataException e) {
     // The status returned is not 200
   } catch (IOException e) {
@@ -79,7 +79,7 @@ As an example, here is a call to pin by hash:
   try {
     PinataResponse pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
     // If a PinataException hasn't been been thrown, it means that the status is 200  
-    System.out.println(pinResponse.getInt("status")); // 200
+    System.out.println(pinResponse.getStatus()); // 200
   } catch (PinataException e) {
     // The status returned is not 200
   } catch (IOException e) {
