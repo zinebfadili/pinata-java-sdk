@@ -87,6 +87,12 @@ As an example, here is a call to pin by hash:
   }
 ```
 
+The return value is always a JSON object with two keys:
+ * `status` : an Integer containing the response status
+ * `body` : a String containing the response body
+
+Methods with optional parameters (for example `pinByHash` and its `options` parameter) are overloaded so that they can be invoked without.
+
 ## Remarks
 
 Please note that this version only supports IPFS peer addresses protocols that are handled in the [multiformats Protocol Java Implementation](https://github.com/multiformats/java-multiaddr).
