@@ -37,7 +37,7 @@ Test that you can connect to the API with:
   // If you created a Pinata instance with keys
   try {
     PinataResponse authResponse = pinata.testAuthentication();
-    // If a PinataException hasn't been been thrown, it means that the status igs 200  
+    // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(authResponse.getStatus()); // 200
   } catch (PinataException e) {
     // The status returned is not 200
@@ -95,7 +95,7 @@ Methods with optional parameters (for example `pinByHash` and its `options` para
 
 ## Remarks
 
-Please note that this version only supports IPFS peer addresses protocols that are handled in the [multiformats Protocol Java Implementation](https://github.com/multiformats/java-multiaddr).
+Please note that this version only supports IPFS peer addresses protocols and formats that are handled in the [Multiformats Java Implementation](https://github.com/multiformats/java-multiaddr).
 This means, for example, that addresses containing *p2p-webrtc-start* or in *Base1* are not supported.
 
 ## License
