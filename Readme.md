@@ -30,7 +30,7 @@ Create a Pinata instance without API keys:
 ```
 Or, with Pinata API keys:
 ```Java
-  Pinata pinata = new Pinata('yourPinataApiKey', 'yourPinataSecretApiKey');
+  Pinata pinata = new Pinata("yourPinataApiKey", "yourPinataSecretApiKey");
 ```
 Test that you can connect to the API with:
 ```Java
@@ -47,7 +47,7 @@ Test that you can connect to the API with:
   
   // If you created a Pinata instance without keys
   try {
-    PinataResponse authResponse = pinata.testAuthentication('yourPinataApiKey', 'yourPinataSecretApiKey');
+    PinataResponse authResponse = pinata.testAuthentication("yourPinataApiKey", "yourPinataSecretApiKey");
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(authResponse.getStatus()); // 200
   } catch (PinataException e) {
@@ -66,7 +66,7 @@ As an example, here is a call to pin by hash:
 ```Java
   // If you created a Pinata instance with keys
   try {
-    PinataResponse pinResponse = pinata.pinByHash('yourHash');
+    PinataResponse pinResponse = pinata.pinByHash("yourHash");
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(pinResponse.getStatus()); // 200
   } catch (PinataException e) {
@@ -77,7 +77,7 @@ As an example, here is a call to pin by hash:
   
   // If you created a Pinata instance without keys
   try {
-    PinataResponse pinResponse = pinata.pinByHash('yourPinataApiKey', 'yourPinataSecretApiKey', 'yourHash');
+    PinataResponse pinResponse = pinata.pinByHash("yourPinataApiKey", "yourPinataSecretApiKey", "yourHash");
     // If a PinataException hasn't been been thrown, it means that the status is 200  
     System.out.println(pinResponse.getStatus()); // 200
   } catch (PinataException e) {
