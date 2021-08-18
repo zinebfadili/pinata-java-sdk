@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import org.json.JSONObject;
@@ -40,11 +42,28 @@ public class PinFileToIpfsTest {
   @Test
   public void notAFile() {
     Pinata pinata = new Pinata();
-    Exception thrown = assertThrows(Exception.class,
+    assertThrows(FileNotFoundException.class,
         () -> {
           pinata.pinFileToIpfs("test", "test", new File(""));
         });
-    assertEquals("file does not exist",
-        thrown.getMessage());
+  }
+
+  @Test
+  public void inputStream() {
+    Pinata pinata = new Pinata();
+    String filePath = "hello.txt";
+    InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath);
+    assertNotNull(resourceAsStream);
+    try (MockedStatic<RequestSender> utilities = Mockito.mockStatic(RequestSender.class)) {
+      PinataResponse expectedResponse = new PinataResponse();
+      expectedResponse.setStatus(200);
+      utilities.when(() -> RequestSender.postOrPutRequest(any(),any(), any(), any(), any()))
+              .thenReturn(expectedResponse);
+      PinataResponse response = pinata.pinFileToIpfs("test", "test", resourceAsStream, "filename");
+      assertEquals(200, response.getStatus());
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail();
+    }
   }
 }

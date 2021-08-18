@@ -3,8 +3,7 @@ package pinata;
 import static util.RequestSender.getRequest;
 import static util.RequestSender.postOrPutRequest;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -15,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
+import util.InputStreamRequestBody;
 import util.IsIpfs;
 import util.Validator;
 import util.querybuilder.PinJobsQueryBuilder;
@@ -223,16 +223,46 @@ public class Pinata {
    */
   public PinataResponse pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, File file,
       JSONObject options) throws PinataException, IOException {
+    try (InputStream fileInputStream = new FileInputStream(file)) {
+      return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, fileInputStream, file.getName(), options);
+    }
+  }
+
+  public PinataResponse pinFileToIpfs(InputStream fileInputStream, String filename, JSONObject options) throws
+          PinataException, IOException {
+    return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, fileInputStream, filename, options);
+  }
+
+  public PinataResponse pinFileToIpfs(InputStream fileInputStream, String filename) throws PinataException, IOException {
+    return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, fileInputStream, filename, null);
+  }
+
+  public PinataResponse pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, InputStream fileInputStream,
+                                      String filename) throws PinataException, IOException {
+    return pinFileToIpfs(pinataApiKey, pinataSecretApiKey, fileInputStream, filename, null);
+  }
+
+  /**
+   * Send file to Pinata to pin to IPFS.
+   *
+   * @param pinataApiKey Pinata API Key
+   * @param pinataSecretApiKey Pinata Secret API Key
+   * @param fileInputStream InputStream of the file to be pinned
+   * @param filename Name of the file to be pinned
+   * @param options Pinning options
+   * @return Pinata response status and body
+   * @throws PinataException when invalid keys or file
+   * @throws IOException when failure to send request
+   */
+  public PinataResponse pinFileToIpfs(String pinataApiKey, String pinataSecretApiKey, InputStream fileInputStream,
+                                      String filename, JSONObject options) throws PinataException, IOException {
     Validator.validateApiKeys(pinataApiKey, pinataSecretApiKey);
 
-    if (!file.exists()) {
-      throw new PinataException("file does not exist");
-    }
     String endpoint = BASE_URL + "/pinning/pinFileToIPFS";
 
     MultipartBody.Builder bodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM)
-        .addFormDataPart("file", file.getName(),
-            RequestBody.create(file, MediaType.parse("application/octet-stream")));
+            .addFormDataPart("file", filename,
+                    InputStreamRequestBody.create(fileInputStream, MediaType.parse("application/octet-stream")));
 
     if (options != null) {
       addOptionsToMultiPartBody(bodyBuilder, options);
