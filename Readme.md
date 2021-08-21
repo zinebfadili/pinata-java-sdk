@@ -58,7 +58,25 @@ Test that you can connect to the API with:
 ```
 ## Usage
 
-Please refer to the full list of available methods and their usage in the [Pinata-SDK documentation](https://github.com/PinataCloud/Pinata-SDK/blob/master/README.md). The method names are the same in camel case.
+The available operations are:
+
+* Pinning
+  * hashMetadata
+  * hashPinPolicy
+  * pinByHash
+  * pinFileToIPFS
+  * pinFromFs
+  * pinJobs
+  * pinJSONToIPFS
+  * unpin
+  * userPinPolicy
+
+* Data
+  * testAuthentication
+  * pinList
+  * userPinnedDataTotal
+
+Please refer to the [Pinata-SDK documentation](https://github.com/PinataCloud/Pinata-SDK/blob/master/README.md) for the explanation of the purpose of these methods. The method names are the same but in camel case.
 
 If you have created a Pinata instance using your keys, you don't need to specify them again when calling the methods.
 
