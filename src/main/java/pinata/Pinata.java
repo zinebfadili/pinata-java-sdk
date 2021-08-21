@@ -356,7 +356,7 @@ public class Pinata {
     MediaType mediaType = MediaType.parse("application/json");
     RequestBody body = RequestBody.create("", mediaType);
 
-    return postOrPutRequest("POST", endpoint, body, pinataApiKey, pinataSecretApiKey);
+    return postOrPutRequest("DELETE", endpoint, body, pinataApiKey, pinataSecretApiKey);
   }
 
   public PinataResponse userPinPolicy(JSONObject newPinPolicy) throws PinataException, IOException {
